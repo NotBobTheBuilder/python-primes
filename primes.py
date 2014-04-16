@@ -6,7 +6,6 @@ class Primes(object):
         self.stop = stop or float('inf')
 
     def __iter__(self):
-        yield 1
         for prime in Primes.cached:
             yield prime
 
