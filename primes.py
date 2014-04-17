@@ -16,6 +16,15 @@ class Primes(object):
             if num > self.stop:
                 return
 
-            if not any(num % p == 0 for p in Primes.cached):
+            if num in self:
                 Primes.cached.append(num)
                 yield num
+
+    def __contains__(self, num):
+        stop = (num ** 0.5)
+        for prime in self:
+            if prime > stop:
+                return True
+
+            if num % prime == 0:
+                return False
