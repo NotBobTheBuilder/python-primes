@@ -7,12 +7,14 @@ class Primes(object):
 
     def __iter__(self):
         for prime in Primes.cached:
+            if prime > self.stop:
+                return
             yield prime
 
         start = Primes.cached[-1]
         for num in count(start + 1, 2):
             if num > self.stop:
-                break
+                return
 
             if not any(num % p == 0 for p in Primes.cached):
                 Primes.cached.append(num)
